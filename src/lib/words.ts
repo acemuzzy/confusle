@@ -15,45 +15,6 @@ export const isWinningWord = (word: string) => {
   return solution === word
 }
 
-// build a set of previously revealed letters - present and correct
-// guess must use correct letters in that space and any other revealed letters
-// also check if all revealed instances of a letter are used (i.e. two C's)
-export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
-  if (guesses.length === 0) {
-    return false
-  }
-
-  const lettersLeftArray = new Array<string>()
-  const guess = guesses[guesses.length - 1]
-  const statuses = getGuessStatuses(guess)
-  const splitWord = unicodeSplit(word)
-  const splitGuess = unicodeSplit(guess)
-
-  for (let i = 0; i < splitGuess.length; i++) {
-    if (statuses[i] === 'correct' || statuses[i] === 'present') {
-      lettersLeftArray.push(splitGuess[i])
-    }
-    if (statuses[i] === 'correct' && splitWord[i] !== splitGuess[i]) {
-      return WRONG_SPOT_MESSAGE(splitGuess[i], i + 1)
-    }
-  }
-
-  // check for the first unused letter, taking duplicate letters
-  // into account - see issue #198
-  let n
-  for (const letter of splitWord) {
-    n = lettersLeftArray.indexOf(letter)
-    if (n !== -1) {
-      lettersLeftArray.splice(n, 1)
-    }
-  }
-
-  if (lettersLeftArray.length > 0) {
-    return NOT_CONTAINED_MESSAGE(lettersLeftArray[0])
-  }
-  return false
-}
-
 export const unicodeSplit = (word: string) => {
   return new GraphemeSplitter().splitGraphemes(word)
 }
@@ -86,6 +47,29 @@ export const getWordOfDay = () => {
     solution: localeAwareUpperCase(WORDS[index % WORDS.length]),
     solutionIndex: index,
     tomorrow: nextday,
+  }
+}
+
+export function hashCode(str: string): number {
+  var h: number = 0;
+  for (var i = 0; i < str.length; i++) {
+      h = 31 * h + str.charCodeAt(i);
+  }
+  return h & 0xFFFFFFFF
+}
+
+export const offsetIndex = () => {
+  // January 1, 2022 Game Epoch
+  const hash = hashCode(getWordOfDay().solution)
+  
+  return [Math.floor(hash % 2), Math.floor((hash % 4) / 2), Math.floor((hash % 8) / 4), Math.floor((hash % 16) / 8), Math.floor((hash % 32) / 16)]
+}
+
+export const errorIndex = (row: number) => {
+  const hash = hashCode(getWordOfDay().solution)
+  const foo = [Math.floor(hash % 5), Math.floor((hash % 25) / 5), Math.floor((hash % 125) / 25), Math.floor((hash % 625) / 125), Math.floor((hash % 3125) / 625), Math.floor((hash % 15625) / 3125)]
+  return {
+    row: foo[row]
   }
 }
 

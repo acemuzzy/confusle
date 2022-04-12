@@ -1,4 +1,5 @@
-import { solution, unicodeSplit } from './words'
+import { stat } from 'fs'
+import { errorIndex, offsetIndex, solution, unicodeSplit } from './words'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 
@@ -30,7 +31,7 @@ export const getStatuses = (
   return charObj
 }
 
-export const getGuessStatuses = (guess: string): CharStatus[] => {
+export const getGuessStatuses = (guess: string, row: number): CharStatus[] => {
   const splitSolution = unicodeSplit(solution)
   const splitGuess = unicodeSplit(guess)
 
@@ -71,5 +72,23 @@ export const getGuessStatuses = (guess: string): CharStatus[] => {
     }
   })
 
+  // Now oscillate the "wrong" guess
+  console.log("Statuses were: ", statuses)
+  const wrongGuess = errorIndex(row).row
+  const currentGuess = statuses[wrongGuess]
+
+  const possibles: CharStatus[] = ['absent', 'present', 'correct']
+  const possiblesLeft: CharStatus[] = []
+  possibles.forEach((word) => {
+    if (word != currentGuess) {
+      possiblesLeft.push(word)
+    }
+  })
+  console.log("Possibles left: ", possiblesLeft)
+
+  statuses[wrongGuess] = possiblesLeft[offsetIndex()[wrongGuess]]
+  console.log("Statuses now: ", statuses)
+
   return statuses
 }
+

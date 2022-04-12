@@ -4,11 +4,12 @@ import { unicodeSplit } from '../../lib/words'
 
 type Props = {
   guess: string
-  isRevealing?: boolean
+  row: number
+  isRevealing?: boolean  
 }
 
-export const CompletedRow = ({ guess, isRevealing }: Props) => {
-  const statuses = getGuessStatuses(guess)
+export const CompletedRow = ({ guess, row, isRevealing }: Props) => {
+  const statuses = getGuessStatuses(guess, row)
   const splitGuess = unicodeSplit(guess)
 
   return (

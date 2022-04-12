@@ -43,9 +43,13 @@ export const shareStatus = (
 }
 
 export const generateEmojiGrid = (guesses: string[], tiles: string[]) => {
+
+  var row = 0
+  
   return guesses
     .map((guess) => {
-      const status = getGuessStatuses(guess)
+      const status = getGuessStatuses(guess, row)
+      row = row + 1
       const splitGuess = unicodeSplit(guess)
 
       return splitGuess

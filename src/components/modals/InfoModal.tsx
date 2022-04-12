@@ -12,6 +12,8 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       <p className="text-sm text-gray-500 dark:text-gray-300">
         Guess the word in 6 tries. After each guess, the color of the tiles will
         change to show how close your guess was to the word.
+
+        But there's a twist!  In each row, precisely one piece of information will be wrong.  But you won't know which.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
@@ -58,13 +60,13 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
 
       <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
-        This is an open source version of the word guessing game we all know and
-        love -{' '}
+        This is acemuzzy's variant of the word guessing game we all know and
+        love, built on top of opensource code from {' '}
         <a
           href="https://github.com/cwackerfuss/react-wordle"
           className="underline font-bold"
         >
-          check out the code here
+        here
         </a>{' '}
       </p>
     </BaseModal>
