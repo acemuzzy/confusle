@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confusle-deployment
+  labels:
+    app: confusle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: confusle  
+  template:
+    metadata:
+      labels:
+        app: confusle
+    spec:
+      containers:
+        - name: confusle
+          image: confusleacr.azurecr.io/reactle:1.0.0
