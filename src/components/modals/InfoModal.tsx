@@ -10,11 +10,10 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Wordle with a twist!
-        
-        After each guess, the color of the tiles will change to show how close
+        Wordle with a twist...!  After each guess, the color of the tiles will change to show how close
         your guess was to the word.
-
+      </p>
+      <p className="text-sm text-gray-500 dark:text-gray-300">
         <b>BUT - in each row, precisely one piece of information will be wrong.</b>  
         And you won't know which...
       </p>

@@ -71,22 +71,24 @@ export const getGuessStatuses = (guess: string, row: number): CharStatus[] => {
     }
   })
 
-  // Now oscillate the "wrong" guess
-  console.log("Statuses were: ", statuses)
-  const wrongGuess = errorIndex(row)
-  const currentGuess = statuses[wrongGuess]
+  // Now oscillate the "wrong" guess - unless we actually got the right answer...
+  if (solution !== guess) {
+    console.log("Statuses were: ", statuses)
+    const wrongGuess = errorIndex(row)
+    const currentGuess = statuses[wrongGuess]
 
-  const possibles: CharStatus[] = ['absent', 'present', 'correct']
-  const possiblesLeft: CharStatus[] = []
-  possibles.forEach((word) => {
-    if (word !== currentGuess) {
-      possiblesLeft.push(word)
-    }
-  })
-  console.log("Possibles left: ", possiblesLeft)
+    const possibles: CharStatus[] = ['absent', 'present', 'correct']
+    const possiblesLeft: CharStatus[] = []
+    possibles.forEach((word) => {
+      if (word !== currentGuess) {
+        possiblesLeft.push(word)
+      }
+    })
+    console.log("Possibles left: ", possiblesLeft)
 
-  statuses[wrongGuess] = possiblesLeft[offsetIndex()[wrongGuess]]
-  console.log("Statuses now: ", statuses)
+    statuses[wrongGuess] = possiblesLeft[offsetIndex()[row]]
+    console.log("Statuses now: ", statuses)
+  }
 
   return statuses
 }

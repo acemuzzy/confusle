@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: confusle
-          image: confusleacr.azurecr.io/confusle:1.0.8
+          image: confusleacr.azurecr.io/confusle:1.0.11

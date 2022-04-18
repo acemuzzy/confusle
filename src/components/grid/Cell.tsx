@@ -29,6 +29,7 @@ export const Cell = ({
     'w-8 h-8 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-small rounded',
     {
       'text-red-600': revealWrong,
+      'text-black dark:text-white': !revealWrong && !status,
       'text-white': !revealWrong,
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
