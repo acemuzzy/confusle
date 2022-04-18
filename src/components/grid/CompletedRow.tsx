@@ -1,14 +1,15 @@
 import { getGuessStatuses } from '../../lib/statuses'
 import { Cell } from './Cell'
-import { unicodeSplit } from '../../lib/words'
+import { errorIndex, unicodeSplit } from '../../lib/words'
 
 type Props = {
   guess: string
   row: number
-  isRevealing?: boolean  
+  isRevealing?: boolean
+  revealWrong?: boolean
 }
 
-export const CompletedRow = ({ guess, row, isRevealing }: Props) => {
+export const CompletedRow = ({ guess, row, isRevealing, revealWrong = false }: Props) => {
   const statuses = getGuessStatuses(guess, row)
   const splitGuess = unicodeSplit(guess)
 
@@ -22,6 +23,7 @@ export const CompletedRow = ({ guess, row, isRevealing }: Props) => {
           position={i}
           isRevealing={isRevealing}
           isCompleted
+          revealWrong={(revealWrong && (i === errorIndex(row)))}
         />
       ))}
     </div>

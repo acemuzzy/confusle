@@ -1,5 +1,6 @@
 import { WORDS } from '../constants/wordlist'
 import { VALID_GUESSES } from '../constants/validGuesses'
+import { MAX_CHALLENGES, MAX_WORD_LENGTH } from '../constants/settings'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
 
 export const isWordInWordList = (word: string) => {
@@ -59,16 +60,24 @@ export function hashCode(str: string): number {
 export const offsetIndex = () => {
   // January 1, 2022 Game Epoch
   const hash = hashCode(getWordOfDay().solution)
+  var offsets = []
+
+  for (var i = 0; i < MAX_CHALLENGES; i++) {
+    offsets[i] = Math.floor((hash % Math.pow(2, i + 1)) / Math.pow(2, i))
+  }
   
-  return [Math.floor(hash % 2), Math.floor((hash % 4) / 2), Math.floor((hash % 8) / 4), Math.floor((hash % 16) / 8), Math.floor((hash % 32) / 16)]
+  return offsets
 }
 
 export const errorIndex = (row: number) => {
   const hash = hashCode(getWordOfDay().solution)
-  const foo = [Math.floor(hash % 5), Math.floor((hash % 25) / 5), Math.floor((hash % 125) / 25), Math.floor((hash % 625) / 125), Math.floor((hash % 3125) / 625), Math.floor((hash % 15625) / 3125)]
-  return {
-    row: foo[row]
+  var errors = []
+
+  for (var i = 0; i < MAX_CHALLENGES; i++) {
+    errors[i] = Math.floor((hash % Math.pow(MAX_WORD_LENGTH, i + 1)) / Math.pow(MAX_WORD_LENGTH, i))
   }
+  
+  return errors[row]
 }
 
 export const { solution, solutionIndex, tomorrow } = getWordOfDay()

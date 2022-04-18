@@ -73,7 +73,7 @@ export const getGuessStatuses = (guess: string, row: number): CharStatus[] => {
 
   // Now oscillate the "wrong" guess
   console.log("Statuses were: ", statuses)
-  const wrongGuess = errorIndex(row).row
+  const wrongGuess = errorIndex(row)
   const currentGuess = statuses[wrongGuess]
 
   const possibles: CharStatus[] = ['absent', 'present', 'correct']
