@@ -2,6 +2,7 @@ import { MAX_CHALLENGES } from '../../constants/settings'
 import { CompletedRow } from './CompletedRow'
 import { CurrentRow } from './CurrentRow'
 import { EmptyRow } from './EmptyRow'
+import { solution } from '../../lib/words'
 
 type Props = {
   guesses: string[]
@@ -31,7 +32,7 @@ export const Grid = ({
           guess={guess}
           row={i}
           isRevealing={isRevealing && guesses.length - 1 === i}
-          revealWrong={!isHardMode && (i < (guesses.length - 1))}
+          revealWrong={((guesses[guesses.length - 1] === solution) || !isHardMode) && (i < (guesses.length - 1))}
         />
       ))}
       {guesses.length < MAX_CHALLENGES && (

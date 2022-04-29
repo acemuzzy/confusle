@@ -5,6 +5,7 @@ import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
 import {
+  CATCHPHRASE,
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
@@ -235,6 +236,10 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
+      <p className="text-sm text-center italic ml-2.5 font-bold dark:text-white">
+        {CATCHPHRASE}
+      </p>
+      <br />
       <div className="pt-1 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-2 lg:px-2 flex flex-col grow">
         <div className="pb-2">
           <Grid

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: letsencrpyt-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: addon-http-application-routing
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: "traefik"
+    #service.beta.kubernetes.io/azure-dns-label-name: confusle
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - confusle.positronicarts.com
+    secretName: tls-secret
+  rules:
+  - host: confusle.positronicarts.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: confusle-svc
+            port: 
+              number: 80
