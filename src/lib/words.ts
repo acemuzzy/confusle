@@ -35,12 +35,18 @@ export const localeAwareUpperCase = (text: string) => {
     : text.toUpperCase()
 }
 
+export const OFFSET_BASE = 120
+export const OFFSET = 2000
+
 export const getWordOfDay = () => {
   // January 1, 2022 Game Epoch
   const epochMs = new Date(2022, 0).valueOf()
   const now = Date.now()
   const msInDay = 86400000
-  const index = Math.floor((now - epochMs) / msInDay)
+  var index = Math.floor((now - epochMs) / msInDay)
+  if (index > OFFSET_BASE) {
+    index += OFFSET
+  }
   const nextday = (index + 1) * msInDay + epochMs
 
   return {
