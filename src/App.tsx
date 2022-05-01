@@ -37,6 +37,7 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 
 import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
+import { HelpText } from './components/alerts/HelpText'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 
@@ -239,7 +240,9 @@ function App() {
       <p className="text-sm text-center italic ml-2.5 font-bold dark:text-white">
         {CATCHPHRASE}
       </p>
-      <br />
+      <p>
+        <HelpText isHardMode={isHardMode} guesses={guesses} />
+      </p>
       <div className="pt-1 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-2 lg:px-2 flex flex-col grow">
         <div className="pb-2">
           <Grid

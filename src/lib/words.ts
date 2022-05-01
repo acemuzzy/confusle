@@ -2,6 +2,7 @@ import { WORDS } from '../constants/wordlist'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { MAX_CHALLENGES, MAX_WORD_LENGTH } from '../constants/settings'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
+import { log } from 'console'
 
 export const isWordInWordList = (word: string) => {
   return (
