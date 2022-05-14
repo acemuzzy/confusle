@@ -2,7 +2,6 @@ import { WORDS } from '../constants/wordlist'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { MAX_CHALLENGES, MAX_WORD_LENGTH } from '../constants/settings'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
-import { log } from 'console'
 
 export const isWordInWordList = (word: string) => {
   return (
@@ -44,13 +43,11 @@ export const getWordOfDay = () => {
   const now = Date.now()
   const msInDay = 86400000
   var index = Math.floor((now - epochMs) / msInDay)
-  if (index > OFFSET_BASE) {
-    index += OFFSET
-  }
   const nextday = (index + 1) * msInDay + epochMs
+  const wordIndex = index + OFFSET
 
   return {
-    solution: localeAwareUpperCase(WORDS[index % WORDS.length]),
+    solution: localeAwareUpperCase(WORDS[wordIndex % WORDS.length]),
     solutionIndex: index,
     tomorrow: nextday,
   }
