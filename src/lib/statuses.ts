@@ -1,4 +1,5 @@
 import { errorIndex, offsetIndex, solution, unicodeSplit } from './words'
+import { MAX_CHALLENGES } from '../constants/settings'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 
@@ -71,8 +72,10 @@ export const getGuessStatuses = (guess: string, row: number): CharStatus[] => {
     }
   })
 
-  // Now oscillate the "wrong" guess - unless we actually got the right answer...
-  if (solution !== guess) {
+  // Now oscillate the "wrong" guess, unless we:
+  //  - actually got the right answer, or
+  //  - are on the final guess
+  if ((solution !== guess) && (row < (MAX_CHALLENGES - 1))) {
     const wrongGuess = errorIndex(row)
     const currentGuess = statuses[wrongGuess]
 
