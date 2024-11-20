@@ -2,6 +2,8 @@
 
 This is a variant of the popular word guessing game we all know and love. Made using React, Typescript, and Tailwind.
 
+The main live version is hosted at https://confusle.positronicarts.com/.  Rules are within the app.  Can you handle Hard Mode??
+
 It was made on top of https://github.com/cwackerfuss/react-wordle, which has lots of additional advice on e.g. languages, telemetry etc.
 
 ## Build and run
