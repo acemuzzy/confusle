@@ -25,8 +25,9 @@ export const Navbar = ({
         />
         <p className="text-xl ml-2.5 font-bold dark:text-white">{GAME_TITLE}</p>
         <div className="right-icons">
-          <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-          <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'K3K8IGMWO');kofiwidget2.draw();</script> 
+          <a href='https://ko-fi.com/K3K8IGMWO' target='_blank'>
+            <img height='36' style={{border:0,height:36}} src='https://storage.ko-fi.com/cdn/kofi3.png?v=6' alt='Buy Me a Coffee at ko-fi.com' />
+          </a>
           <ChartBarIcon
             className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
             onClick={() => setIsStatsModalOpen(true)}
