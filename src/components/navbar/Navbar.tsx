@@ -26,7 +26,7 @@ export const Navbar = ({
         <p className="text-xl ml-2.5 font-bold dark:text-white">{GAME_TITLE}</p>
         <div className="right-icons">
           <a href='https://ko-fi.com/K3K8IGMWO'>
-            <img height='36' style={{border:0,height:36}} src='https://storage.ko-fi.com/cdn/kofi3.png?v=6' alt='Buy Me a Coffee at ko-fi.com' />
+            <img height='28' style={{border:0,height:28}} src='https://storage.ko-fi.com/cdn/widget/kofi_new_button.png' alt='Buy Me a Coffee at ko-fi.com' />
           </a>
           <ChartBarIcon
             className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
